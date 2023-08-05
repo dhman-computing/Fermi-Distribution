@@ -1,0 +1,21 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{Title of the Document}
+\author{Dhiman Kumar Chakraborty}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+The Fermi-Dirac Distribution can be written as,
+$$
+f(E) = \frac{1}{\exp\left(\frac{E - E_F}{k \cdot T}\right) + 1}
+$$
+
+\end{document}

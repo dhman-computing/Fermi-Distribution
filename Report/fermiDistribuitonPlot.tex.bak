@@ -1,0 +1,28 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{Title of the Document}
+\author{Dhiman Kumar Chakraborty}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Fermi Distribution}
+\subsection{Function}
+
+The Fermi-Dirac Distribution can be written as,
+$$
+f(E) = \frac{1}{e^{\left(\frac{E - E_F}{k_B T}\right)} + 1}
+$$
+where $E_F$ is the Fermi energy level, $E$ is one of the energy levels of the system, $k_B$ is the Boltzmann constant and $T$ is the absolute temperature.
+
+\subsection{Plot}
+
+
+\end{document}
