@@ -23,4 +23,5 @@ def fermi_distribution(energy, fermi_energy, tempareture):
     clipped_exponent = np.clip(exponent, -1000, 1000)
     return 1 / (np.exp(clipped_exponent) + 1)
 
-
+def plot_function(f, x : set[float], ylimit : set[float]):
+    pass
