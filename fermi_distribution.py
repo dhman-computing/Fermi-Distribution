@@ -23,10 +23,10 @@ def fermi_distribution(E, E_F, T):
 
 
 def fermi_plot(T):
-    E = np.linspace(0, 2, 10000)
+    E = np.linspace(0, 10, 10000)
 
     # Example usage:
-    E_F = 1.0  # Fermi energy (in eV)
+    E_F = 5.0  # Fermi energy (in eV)
     # T = 0.001  # Temperature in Kelvin
     # energy_value = 0.5  # Energy value (in eV)
 
@@ -40,7 +40,7 @@ def fermi_plot(T):
     plt.xlabel('Energy(E)')
     plt.ylabel('F(E)')
     plt.title('Fermi Distribution')
-    plt.xlim(0, 2)
+    plt.xlim(0, 10)
     plt.ylim(-0.25, 1.25)
     plt.grid(True)
     plt.legend()
@@ -52,7 +52,7 @@ def fermi_plot(T):
     top_right_text = f"Tempareture = {T}K"
     plt.text(0.65, 0.85, top_right_text, ha='left',
              va='center', transform=plt.gca().transAxes)
-    top_right_text = f"Fermi Energy = {E_F}"
+    top_right_text = f"Fermi Energy = {E_F}eV"
     plt.text(0.65, 0.80, top_right_text, ha='left',
              va='center', transform=plt.gca().transAxes)
 
@@ -81,7 +81,7 @@ def fermi_plot_video(video_name, T, T_icrement, no, fps=30):
         
         frame = cv2.imread(image_path)
         video.write(frame)
-        print(f"Written frame: {i}")
+        print(f"Written frame: {i + 1}")
 
 no = 2000
 T = 0.0001
