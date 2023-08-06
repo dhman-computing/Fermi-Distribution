@@ -1,6 +1,7 @@
 from math import exp, e
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
 
 def e_x(x):
@@ -57,3 +58,15 @@ plt.bar(x_val, point_in_x)
 
 plt.savefig('plot.png')
 plt.show()
+
+
+data = {
+    'x_set' : x_set,
+    'y_set' : y_set,
+    'x_val' : x_val,
+    'point_in_x' : point_in_x,
+    'segments' : segments,
+}
+
+with open('data.pkl', 'wb') as file:
+    pickle.dump(data, file)
