@@ -1,17 +1,19 @@
-from math import exp, e
+# pylint: disable=wrong-import-order
+# pylint: disable=missing-module-docstring
+# pylint: disable=missing-function-docstring
+# pylint: disable=consider-using-enumerate
+# pylint: disable=invalid-name
+# pylint: disable=redefined-outer-name
+# pylint: disable=consider-using-f-string
+# pylint: disable=trailing-whitespace
+# pylint: disable=no-member
+
+
+# from math import exp, e
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
-
-
-def e_x(x):
-  return e**(-1*x)
-
-def dist_f_N(x, N=100):
-  return e**(-1*x/N)
-
-def dist_f_1(x, N=100):
-  return e**(-1*x/N)/N
+from support1 import dist_f_N
 
 
 No_of_points = 1000
