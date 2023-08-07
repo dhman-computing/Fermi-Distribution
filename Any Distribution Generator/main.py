@@ -18,8 +18,8 @@ from support1 import distribution_count, plot_function#, save_to_pkl
 
 
 def f(x):
-    N = 1000
-    return e**(-1*x/N)
+    #N = 1000
+    return e**(-1*x)
 
 def func(dx):
     plot = plot_function(f, (0, 5000), (-0.1, 1.1), x_number=10**6)
