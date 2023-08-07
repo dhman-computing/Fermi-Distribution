@@ -42,7 +42,7 @@ def distribution_count(f, xlimit, precision):
         mid_pt_of_segment[i] = (segments[i][0] + segments[i][1]) / 2
         value_of_f_for_mid_pt[i] = f(mid_pt_of_segment[i])
     
-    return mid_pt_of_segment, value_of_f_for_mid_pt
+    return mid_pt_of_segment, value_of_f_for_mid_pt, segments
     # pass
 
 def plot_function(f,
