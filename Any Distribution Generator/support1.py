@@ -26,6 +26,9 @@ def dist_f_N(x, N=100):
 def dist_f_1(x, N=100):
     return e**(-1*x/N)/N
 
+def xy(x):
+    return x[0]*x[1]
+
 
 def distribution_count(f, xlimit, precision):
     no_of_segments = int((xlimit[1] - xlimit[0]) / precision)
@@ -56,7 +59,8 @@ def plot_function(f,
     # Create the plot
     plt.plot(x, y, label=labels[3])
     plt.xlim(xlimit[0], xlimit[1])
-    plt.ylim(ylimit[0], ylimit[1])
+    if ylimit != ():
+        plt.ylim(ylimit[0], ylimit[1])
 
     plt.xlabel(labels[0])
     plt.ylabel(labels[1])
@@ -104,7 +108,7 @@ def new_integration(f, y, delta_x, total_random_no):
     for i in range(no_of_segments):
         random_no_for_segment = int(total_random_no * y[i] / sum_y)
         # integration_for_segment = 0
-        for j in range(random_no_for_segment):
+        for _ in range(random_no_for_segment):
             random_no = random.uniform(delta_x[i][0], delta_x[i][1])
             integration += f(random_no)
         total_random_no_genareted += random_no_for_segment
@@ -114,3 +118,32 @@ def new_integration(f, y, delta_x, total_random_no):
     integration = integration/total_random_no_genareted
     
     return integration
+
+def r_integration(f, xlimit, N: int):
+    integration = 0
+    x_i = xlimit[0]
+    
+    dx = (xlimit[1] - xlimit[0]) / N
+    for _ in range(N):
+        integration += f(x_i)*dx
+        
+        x_i += dx
+        
+    return integration
+
+def n_dimensional_monte_carlo_integration(f, xlimit, N):
+    # xlist = [0 for _ in range(N)]
+    n = len(xlimit) # dimension
+    point = [0 for _ in range(n)]
+
+    multiplier = 1
+    result = 0
+    for i in range(N):
+        for j in range(n):
+            point[j] = random.uniform(xlimit[j][0], xlimit[j][1])
+            multiplier = multiplier * (xlimit[j][1] - xlimit[j][0])
+        result += f(point)
+
+    result = multiplier * result / N
+
+    return result
