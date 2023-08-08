@@ -17,7 +17,7 @@ import numpy as np
 from support1 import distribution_count, \
     mc_integration, new_integration, r_integration#, plot_function#, save_to_pkl
 # import random
-import cProfile
+# import cProfile
 
 
 def F(x):
