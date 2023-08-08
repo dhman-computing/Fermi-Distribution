@@ -14,8 +14,10 @@ from math import e
 # import numpy as np
 # import matplotlib.pyplot as plt
 # import pickle as pkl
-from support1 import distribution_count#, plot_function#, save_to_pkl
-import random
+from support1 import distribution_count, \
+    mc_integration, new_integration#, plot_function#, save_to_pkl
+# import random
+import cProfile
 
 
 def F(x):
@@ -23,43 +25,35 @@ def F(x):
     return e**(-1*x)
 
 def f(x):
-    return x**2
+    return 5*x**2+6*x
 
 
 # plot = plot_function(f, (0, 10), (-0.1, 1.1), x_number=10**6)
 
-dx = 0.01
+def main():
+    dx = 0.1
+    xlimit = (0,1000)
 
-x, y, delta_x = distribution_count(F, (0, 10), dx)
+    x, y, delta_x = distribution_count(F, xlimit, dx)
 
-# plot.bar(x, y, color='red', width=dx)
+    # plot.bar(x, y, color='red', width=dx)
 
-# text = f"Plot for f(x)=e**(-1*x) for segment length {dx}."
-# plot.text(1500, -0.40, text, ha='center')
-# plot.title(text)
+    # text = f"Plot for f(x)=e**(-1*x) for segment length {dx}."
+    # plot.text(1500, -0.40, text, ha='center')
+    # plot.title(text)
 
-# plot.savefig(f'plot-{dx}.png',dpi=1500)
+    # plot.savefig(f'plot-{dx}.png',dpi=1500)
 
-sum_y = sum(y)
-# print(sum_y)
-total_random_no = 10**8
-total_random_no_genareted = 0
+    total_random_no = 10**7
+    integration = new_integration(f, y, delta_x, total_random_no)
+    # print(total_random_no_genareted)
+    print(integration)
+    print((16 - integration)*100)
 
-# plot.show()
-# plot.clf()
-integration = 0
-no_of_segments = len(delta_x)
-for i in range(no_of_segments):
-    random_no_for_segment = int(total_random_no * y[i] / sum_y)
-    # integration_for_segment = 0
-    for j in range(random_no_for_segment):
-        random_no = random.uniform(delta_x[i][0], delta_x[i][1])
-        integration += f(random_no)
-    total_random_no_genareted += random_no_for_segment
-    # integration += integration_for_segment / random_no_for_segment
+    def g(x):
+        return f(x)*F(x)
+    monte_carlo = mc_integration(g, xlimit[1], xlimit[0], total_random_no)
+    print(monte_carlo)
+    print((16-monte_carlo)*100)
 
-# print(total_random_no_genareted)    
-integration = integration/total_random_no_genareted
-print(total_random_no_genareted)
-print(integration)
-print((2 - integration)*100)
+cProfile.run('main()')

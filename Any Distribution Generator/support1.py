@@ -14,6 +14,7 @@ from math import e
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle as pkl
+import random
 
 
 def e_x(x):
@@ -81,3 +82,35 @@ def plot_function(f,
 def save_to_pkl(data, pkl_path):
     with open(pkl_path, 'wb') as file:
         pkl.dump(data, file)
+        
+def mc_integration(f, upper_limit, lower_limit, no_of_sample):
+    sum_fx = 0
+    for _ in range(no_of_sample):
+        point = random.uniform(float(lower_limit), float(upper_limit))
+        sum_fx += f(point)
+        weightage = (upper_limit - lower_limit) / no_of_sample
+    return sum_fx * weightage
+
+def new_integration(f, y, delta_x, total_random_no):
+    sum_y = sum(y)
+    # print(sum_y)
+    
+    total_random_no_genareted = 0
+
+    # plot.show()
+    # plot.clf()
+    integration = 0
+    no_of_segments = len(delta_x)
+    for i in range(no_of_segments):
+        random_no_for_segment = int(total_random_no * y[i] / sum_y)
+        # integration_for_segment = 0
+        for j in range(random_no_for_segment):
+            random_no = random.uniform(delta_x[i][0], delta_x[i][1])
+            integration += f(random_no)
+        total_random_no_genareted += random_no_for_segment
+        # integration += integration_for_segment / random_no_for_segment
+
+    # print(total_random_no_genareted)
+    integration = integration/total_random_no_genareted
+    
+    return integration
